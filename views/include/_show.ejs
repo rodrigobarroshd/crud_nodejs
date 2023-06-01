@@ -3,8 +3,9 @@
     <td><%= i + 1 %></td>
     <td><%= users[i].id_topic %></td>
     <td><%= users[i].mac_address %></td>
-    <td><%= users[i].ordem_fabricacao %></td>
+    <td><%= users[i].fabrication_number %></td>
     <td><%= users[i].status %></td>
+    <td><%= users[i].cart_available %></td>
     <td>
         <a href="/update-user?id=<%= users[i]._id%>" class="btn border-shadow update">
             <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>

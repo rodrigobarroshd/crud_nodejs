@@ -4,6 +4,15 @@ const morgan = require('morgan');
 const bodyparser = require("body-parser");
 const path = require('path');
 
+// Mqtt
+const MqttHandler = require("./mqtt/mqtt_handler");
+
+var mqttClient = new MqttHandler();
+mqttClient.connect();
+
+
+////////
+
 const connectDB = require('./server/database/connection');
 
 const app = express();
@@ -29,7 +38,16 @@ app.use('/css', express.static(path.resolve(__dirname, "assets/css")))
 app.use('/img', express.static(path.resolve(__dirname, "assets/img")))
 app.use('/js', express.static(path.resolve(__dirname, "assets/js")))
 
+// Routes
+app.post("/send-mqtt", function(req, res) {
+    mqttClient.sendMessage(req.body.message);
+    res.status(200).send("Message sent to mqtt");
+  });
 // load routers
 app.use('/', require('./server/routes/router'))
 
-app.listen(PORT, ()=> { console.log(`Server is running on http://localhost:${PORT}`)});
+
+
+  
+var server = app.listen(3000, function () {
+ console.log(`Server is running on http://localhost:${PORT}`)});

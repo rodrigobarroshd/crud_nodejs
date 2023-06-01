@@ -12,8 +12,10 @@ exports.create = (req,res)=>{
     const user = new Userdb({
         id_topic : req.body.id_topic,
         mac_address : req.body.mac_address,
-        ordem_fabricacao: req.body.ordem_fabricacao,
-        status : req.body.status
+        fabrication_number: req.body.fabrication_number,
+        status : req.body.status,
+        cart_available: req.body.cart_available
+
     })
 
     // save user in the database

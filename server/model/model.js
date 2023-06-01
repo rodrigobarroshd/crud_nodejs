@@ -10,10 +10,12 @@ var schema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    ordem_fabricacao : String,
-    status : String
+    fabrication_number : String,
+    status : String,
+    cart_available: String
+
 })
 
-const Userdb = mongoose.model('userdb', schema);
+const Userdb = mongoose.model('cart_lock', schema);
 
 module.exports = Userdb;
