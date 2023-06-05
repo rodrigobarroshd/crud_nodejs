@@ -38,8 +38,9 @@ class MqttHandler {
   }
 
   // Sends a mqtt message to topic: mytopic
-  sendMessage(message) {
-    this.mqttClient.publish('cart-lock/server-mqtt', message);
+  sendMessage(topic, message) {
+    console.log(topic, message);
+    this.mqttClient.publish(topic, message);
   }
 }
 

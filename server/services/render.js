@@ -35,10 +35,22 @@ exports.update_user = (req, res) => {
 }
 
 exports.send_to_car = (req, res) => {
-    axios.get('http://localhost:3000/api/users', { params: { id: req.query.id } })
+    axios.get('http://localhost:3000/api/users', { params: { id: req.query.id , id_topic: req.query.id_topic}})
     .then(function (userdata) {
         res.render("send_to_car", { user: userdata.data })
-            mqttClient.sendMessage(req.query.id)
+            console.log(userdata.data);
+
+            // Exibindo os valores
+            // console.log('ID:', userdata.data._id);
+            // console.log('Topic ID:', userdata.data.id_topic);
+            // console.log('MAC Address:', userdata.data.mac_address);
+            // console.log('Fabrication Number:', userdata.data.fabrication_number);
+            // console.log('Cart Available:', userdata.data.cart_available);
+            
+            // Send MQTT
+            mqttClient.sendMessage(userdata.data.id_topic, userdata.data.cart_available)
+
+            // {"command":"unlock","id_user":"user_lkjfd5dfg321e8v2w4f2ds6"}
         })
         .catch(err => {
             res.send(err);

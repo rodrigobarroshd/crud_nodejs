@@ -35,12 +35,12 @@ $("#send_to_car").submit(function(event){
     var data = {}
 
     $.map(unindexed_array, function(n, i){
-        data[n['name']] = n['value']
+        data[n['value']] = n['value']
     })
 
 
     var request = {
-        "url" : `http://localhost:3000/api/users/${data.id}`,
+        "url" : `http://localhost:3000/api/users/${data.id, data.id_topic}`,
         "method" : "PUT",
         "data" : data
     }
