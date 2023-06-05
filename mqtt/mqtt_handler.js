@@ -3,9 +3,9 @@ const mqtt = require('mqtt');
 class MqttHandler {
   constructor() {
     this.mqttClient = null;
-    this.host = 'mqtt://prawn.rmq.cloudamqp.com';
-    this.username = 'vbqycowm:vbqycowm'; // mqtt credentials if these are needed to connect
-    this.password = 'uq50Z5M2UigRSltke7-t-QDBH5_cYb2O';
+    this.host = 'mqtt://hawk.rmq.cloudamqp.com';
+    this.username = 'rrhfnlfh:rrhfnlfh'; // mqtt credentials if these are needed to connect
+    this.password = '6YRSnUUz_39HP6wD0vhXbRBU_2jEOzAz';
     this.protocol = 'mqtt';
   }
   
@@ -25,7 +25,7 @@ class MqttHandler {
     });
 
     // mqtt subscriptions
-    this.mqttClient.subscribe('mytopic', {qos: 0});
+    // this.mqttClient.subscribe('cart-lock/server-mqtt', {qos: 0});
 
     // When a message arrives, console.log it
     this.mqttClient.on('message', function (topic, message) {
@@ -39,7 +39,7 @@ class MqttHandler {
 
   // Sends a mqtt message to topic: mytopic
   sendMessage(message) {
-    this.mqttClient.publish('mytopic', message);
+    this.mqttClient.publish('cart-lock/server-mqtt', message);
   }
 }
 

@@ -5,12 +5,10 @@ const bodyparser = require("body-parser");
 const path = require('path');
 
 // Mqtt
-const MqttHandler = require("./mqtt/mqtt_handler");
+// const MqttHandler = require("./mqtt/mqtt_handler");
 
-var mqttClient = new MqttHandler();
-mqttClient.connect();
-
-
+// var mqttClient = new MqttHandler();
+// mqttClient.connect();
 ////////
 
 const connectDB = require('./server/database/connection');
@@ -39,10 +37,11 @@ app.use('/img', express.static(path.resolve(__dirname, "assets/img")))
 app.use('/js', express.static(path.resolve(__dirname, "assets/js")))
 
 // Routes
-app.post("/send-mqtt", function(req, res) {
-    mqttClient.sendMessage(req.body.message);
-    res.status(200).send("Message sent to mqtt");
-  });
+// app.post("/send_mqtt", function(req, res) {
+//     mqttClient.sendMessage(req.body.message);
+//     res.status(200).send("Message sent to mqtt");
+//   });
+
 // load routers
 app.use('/', require('./server/routes/router'))
 

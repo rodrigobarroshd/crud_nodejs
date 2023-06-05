@@ -4,6 +4,12 @@ const route = express.Router()
 const services = require('../services/render');
 const controller = require('../controller/controller');
 
+// // Mqtt
+// const MqttHandler = require("../../mqtt/mqtt_handler");
+
+// var mqttClient = new MqttHandler();
+// mqttClient.connect();
+
 /**
  *  @description Root Route
  *  @method GET /
@@ -22,6 +28,16 @@ route.get('/add-user', services.add_user)
  */
 route.get('/update-user', services.update_user)
 
+/**
+ *  @description for update user
+ *  @method GET /send_to_car
+ */
+route.get('/send_to_car', services.send_to_car)
+
+// route.post("/send_to_car", function(req, res) {
+//     mqttClient.sendMessage("req.body.message");
+//     res.status(200).send("Message sent to mqtt");
+//   });
 
 // API
 route.post('/api/users', controller.create);
